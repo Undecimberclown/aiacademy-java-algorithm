@@ -42,6 +42,7 @@ class 비만도측정{
         String title = "### 비만도 측정 ###\n";
         String name = "";
         float cm = 0.0f;
+        float m = 0.0f;
         float kg = 0.0f;
         int BMI = 0;
         String degree = "";
@@ -52,6 +53,8 @@ class 비만도측정{
         cm = scanner.nextFloat();
         System.out.println("몸무게 입력: ");
         kg = scanner.nextFloat();
+        m = cm / 100;
+        BMI = (int)(kg / (m*m));
         if(BMI > 30){degree = "비만";}
         else if(BMI >= 25 ){degree = "과체중";}
         else if(BMI >= 19){degree = "정상";}
