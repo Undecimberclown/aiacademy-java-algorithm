@@ -53,8 +53,8 @@ class 비만도측정{
         System.out.println("몸무게 입력: ");
         kg = scanner.nextFloat();
         if(BMI > 30){degree = "비만";}
-        else if(BMI <= 30 && BMI >= 25 ){degree = "과체중";}
-        else if(BMI >= 19 && BMI <= 24){degree = "정상";}
+        else if(BMI >= 25 ){degree = "과체중";}
+        else if(BMI >= 19){degree = "정상";}
         else{degree = "저체중";}
         String answer = String.format(
             "******************************************************************\n"
