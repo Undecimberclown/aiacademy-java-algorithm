@@ -64,6 +64,7 @@ public class 성적표t {
         + "%s %d %d %d %d %.1f %s\n"
         + "******************************************************************\n", name, ko, en, ma, total, avg, grade);
 
+        scanner.close();
         return title + answer;
     }
     
