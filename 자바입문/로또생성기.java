@@ -1,7 +1,5 @@
 package 자바입문;
 import java.util.*;
-
-import javax.naming.spi.DirStateFactory.Result;
 /*
  * Lotto1
 
@@ -32,33 +30,77 @@ import javax.naming.spi.DirStateFactory.Result;
 
 
  */
-public class 로또생성기 {
+
+
+// 중복 체크하는 단계
+
+class 로또생성기 {
     public static void main(String[] args) {
         로또생성기 solution = new 로또생성기();
         System.out.println(solution.solution());
+        
     }
     public String solution(){
-        String title = " ### LOTTO ### \n";
+        String title = " ### 로또 생성기 ### \n";
+        int[] arr = new int[6];
         Random random = new Random();
-        final int LOTTO_SIZE = 6;
-        final int LOTTO_MAX = 45;
-        final int LOTTO_MIN = 1;
-        String result = "";
-        int[] lotto_num = new int[LOTTO_SIZE];
-        for(int i = 0; i < lotto_num.length; i++){
-            lotto_num[i] = random.nextInt(LOTTO_MAX) + LOTTO_MIN;
-            
+        for(int i =0; i< 6; i++ ){
+            int number = random.nextInt(45) + 1;
+            // 로또번호 중복체크
+            boolean check = false; // false가 중복되지 않은 값
+            check = contains(arr, number, check);
+            if(check==false){
+                arr[i] = number; // 중복되지 않았으니 배열에 담아라.
+            }else{
+                i--; // 중복됐으면 이번 회수는 무효로 하고 다시 뽑아라.
+            }
         }
-        for(int i = 0; i > lotto_num.length; i++){
-            result += lotto_num[i] + "\t";
+        arr = sort(arr);
+        String answer = printArray(arr);
+        return title + answer;
+    }
+    /**
+     * 배열 출력 메소드
+    */
+    public String printArray(int[] arr){
+        String result = "";
+        for(int i = 0; i< arr.length; i++){
+            result += arr[i]+"\t";
         }
         String answer = String.format(
-        "******************************************************************\n"
-        + "로또 추첨 결과\n"
-        + "******************************************************************\n"
-        + "%s\n"
-        + "******************************************************************", result);
-        return title + answer;
+        "******************************************\n"
+        +"로또 번호\n"
+        +"******************************************\n"
+        +"%s"
+        +"\n******************************************", result);
+        return answer;
+    }
+    /** 
+     * 중복체크 메서드
+    */
+    public boolean contains(int[] arr, int number, boolean check){
+        for(int j=0; j<6; j++){
+            if(arr[j] == number){
+                check = true;
+            }
+        }
+        return check;
+        
+    }
+    /**
+     * 버블정렬
+     */
+    public int[] sort(int[] arr){
+        for (int j = 0; j < arr.length; j++){
+            for( int i = 0; i < arr.length -1; i++){
+                if(arr[i] > arr[i+1]){
+                    int temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                }
+            }
+        }
+        return arr;
     }
     
 }
