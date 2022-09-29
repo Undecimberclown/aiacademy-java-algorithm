@@ -73,6 +73,8 @@ public class 성적표 {
             grade = "C";
         } else if (average >= 60){
             grade = "D";
+        } else if (average >= 50){
+            grade = "E";
         } else {
             grade = "F";
         }
