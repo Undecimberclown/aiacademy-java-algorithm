@@ -46,16 +46,28 @@ public class 소수구하기 {
         System.out.println("마지막값을 입력: ");
         end = scanner.nextInt();
         for(int i = start; i <= end;i++){
-            if ((i%2)== 0){
-                result += i +"\n";
+            int count = 0;
+            for(int j = 1; j <= i; j++){
+                if(i % j == 0){
+                    count++;
+                }
+                
+                
+            
             }
+            if( count == 2){
+                result += i + "\n";
+            }    
+            
         }
         String title = "### 소수구하기### \n";
         String answer = String.format("******************************************************************\n"
         + "%d부터 %d까지의 짝수\n"
         + "******************************************************************\n"
         + "%s"
-        + "****************************************************************** ", start, end, result);
+        + "******************************************************************\n", start, end, result);
+        
+        scanner.close();
         return title + answer;
     }
 }
