@@ -59,18 +59,9 @@ public class 마지막날짜 {
         System.out.println("몇 월인지 입력해주세요");
         month = scanner.nextInt();
         switch(month){
-            case 2: days = 28; break;   
-            case 4:
-            case 6:
-            case 9:
-            case 11: days = 30; break;
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12: days = 31; break;
+            case 2: days = lastDayOfFeb(year); break;   
+            case 4: case 6: case 9: case 11: days = 30; break;
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12: days = 31; break;
         }
         String answer = String.format(
             "*************\n"
@@ -84,4 +75,22 @@ public class 마지막날짜 {
         return title + answer;
     }
     
+    public int lastDayOfFeb(int year){
+        int lastDay;
+
+        if(year % 400 ==0){lastDay = 29;}
+        else if(year%100 == 0){lastDay = 28;}
+        else if(year % 4 ==0){lastDay = 29;}
+        else{lastDay = 28;}
+        /*
+        1. 기본적으로 4의 배수가 되는 해는 윤년입니다...(year % 4 ==0)
+
+        2. 다만 100의 배수가 되는 해는 윤년이 아닙니다...!(year % 100 == 0)
+
+        3. 그중에서 또 400의 배수가 되는 해는 윤년입니다..  (year % 400 == 0)
+
+        위 3가지 규칙을 만족하는 해는 윤년이 된다.
+        */
+        return lastDay;
+    }
 }
